@@ -1,24 +1,11 @@
-import React, {Component} from 'react'
-import './style.css'
+import React, { Component } from 'react';
+import './style.css';
 
 class Square extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      val: null,
-    }
-  }
-
-  showX = () => {
-    this.setState({
-      val: 'X',
-    })
-  }
-
   render() {
     return (
-      <button className="square" onClick = {this.showX}>
-        {this.state.val}
+      <button className="square" onClick={() => console.log('Click!')}>
+        {this.props.val}
       </button>
     );
   }
@@ -26,7 +13,7 @@ class Square extends Component {
 
 class Board extends Component {
   renderSquare(i) {
-    return <Square val = {i}/>;
+    return <Square val={i} />;
   }
 
   render() {
@@ -71,11 +58,6 @@ class Game extends Component {
   }
 }
 
-
-
-
-export default function App(){
-  return(
-    <Game />
-  )
+export default function App() {
+  return <Game />;
 }
