@@ -10,16 +10,6 @@ function Square (props) {
 }
 
 class Board extends Component {
-  // constructor(props){
-  //   super(props)
-  //   this.state = {
-  //     squares: Array(9).fill(null),
-  //     xIsNext: true,
-  //   }
-  // }
-
-
-
   renderSquare(i) {
     return (
       <Square 
@@ -27,12 +17,9 @@ class Board extends Component {
         onClick = {() => this.props.onClick(i)}
       />
     )
-    
   }
 
   render() {
-
-
     return (
       <div>
         <div className="status">{status}</div>
@@ -70,9 +57,7 @@ class Game extends Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1)
     const current = history[history.length - 1]
     const squares = Array.from(current.squares)
-    
-
-
+  
     if(calculateWinner(squares) || squares[i]) return
     squares[i] = this.state.xIsNext ? 'X' : 'O'
     this.setState({
