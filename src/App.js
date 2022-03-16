@@ -78,6 +78,7 @@ class Game extends Component {
     const history = this.state.history
     const current = history[this.state.stepNumber]
     const winner = calculateWinner(current.squares)
+    const isDraw = calculateDraw(current.squares)
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : `Go to game start`
       return (
@@ -90,7 +91,9 @@ class Game extends Component {
     let status
     if(winner) {
       status = `Winner: ${winner}`
-    } else {
+    } else if(isDraw) {
+      status = `Draw!`
+    } else{
       status = `Next player: ${this.state.xIsNext? 'X' : 'O'}`
     }
 
@@ -121,6 +124,7 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
+  
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -128,6 +132,11 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function calculateDraw(squares) {
+  let drawTester = squares.filter(elem => elem === null? true : false)
+  return drawTester.length === 0? true : false 
 }
 
 export default function App() {
